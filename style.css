@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap');
+
+body {
+  font-family: 'Vazirmatn', sans-serif;
+  direction: rtl;
+  background-color: #a47551;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+}
+
+.modal-content {
+  background-color: white;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  max-width: 500px;
+  width: 90%;
+}

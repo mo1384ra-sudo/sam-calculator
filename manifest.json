@@ -1,0 +1,26 @@
+{
+  "name": "محاسبه‌گر مصرف سم",
+  "short_name": "محاسبه‌گر سم",
+  "description": "محاسبه‌گر میزان مصرف سم خالص در مخزن سمپاش",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#a47551",
+  "theme_color": "#a47551",
+  "orientation": "portrait",
+  "lang": "fa",
+  "dir": "rtl",
+  "icons": [
+    {
+      "src": "https://i.ibb.co/RTx5Vrd9/1.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "https://i.ibb.co/RTx5Vrd9/1.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>محاسبه‌گر مصرف سم</title>
+  <meta name="theme-color" content="#a47551">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="manifest" href="manifest.json">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white p-6">
+  <div class="max-w-md mx-auto">
+
+    <!-- صفحه خوش‌آمدگویی -->
+    <div id="introPage">
+      <h1 class="text-2xl md:text-3xl font-bold text-center text-yellow-300 mb-4">
+        محاسبه‌گر میزان مصرف سم خالص در مخزن سمپاش
+      </h1>
+      <img src="https://i.ibb.co/RTx5Vrd9/1.jpg" alt="تصویر خوش‌آمدگویی" class="rounded-lg shadow-lg w-full mb-4">
+      <p class="text-center text-sm md:text-base mb-6 text-white font-semibold">
+        پدید آورنده : دکتر دانشمند وزیری<br>
+        کارشناس مرکز تحقیقات کشاورزی و منابع طبیعی استان اصفهان
+      </p>
+      <button onclick="enterApp()" class="bg-yellow-300 text-black font-bold w-full py-3 rounded hover:bg-yellow-400 transition">
+        ورود به برنامه
+      </button>
+    </div>
+
+    <!-- انتخاب نوع محاسبه -->
+    <div id="page1" class="hidden">
+      <div class="flex justify-between items-center mb-4">
+        <h1 class="text-2xl font-bold flex-grow text-center">نوع محاسبه را انتخاب کنید</h1>
+        <!-- آیکون برگشت حذف شد -->
+      </div>
+      <select id="mode" onchange="goToPage()" class="w-full p-3 rounded text-black">
+        <option value="">-- انتخاب کنید --</option>
+        <option value="a">حالت الف - غلظتی (لیتر در هزار)</option>
+        <option value="b">حالت ب - لیتر یا کیلوگرم در هکتار</option>
+      </select>
+    </div>
+
+    <!-- حالت الف -->
+    <div id="page2" class="hidden mt-6">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-xl font-bold">حالت الف - غلظتی</h2>
+        <button onclick="goBackToPage1()" class="text-white text-xl">🔙</button>
+      </div>
+      <div class="flex flex-col space-y-4">
+        <div>
+          <label class="block mb-1">ظرفیت مخزن سمپاش (لیتر)</label>
+          <input id="tankA" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <div>
+          <label class="block mb-1 flex items-center">
+            میزان توصیه شده بر روی قوطی سم (سی‌سی)
+            <button onclick="openDoseHelp()" class="ml-2 text-white underline text-sm">🛈 راهنما</button>
+          </label>
+          <input id="doseA" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <button onclick="calculateA()" class="bg-white text-black w-full py-2 rounded">محاسبه</button>
+        <div id="resultA" class="mt-2 text-yellow-200 font-semibold hidden"></div>
+        <button onclick="goBackToPage1()" class="mt-4 underline">بازگشت</button>
+      </div>
+    </div>
+
+    <!-- حالت ب -->
+    <div id="page3" class="hidden mt-6">
+      <div class="flex justify-between items-center mb-2">
+        <h2 class="text-xl font-bold">حالت ب - مصرف در هکتار</h2>
+        <button onclick="goBackToPage1()" class="text-white text-xl">🔙</button>
+      </div>
+      <div class="flex flex-col space-y-4">
+        <div>
+          <label class="block mb-1">ظرفیت مخزن سمپاش (لیتر)</label>
+          <input id="tankB" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <div>
+          <label class="block mb-1">مقدار توصیه شده (کیلوگرم یا لیتر/هکتار)</label>
+          <input id="doseB" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <div>
+          <label class="block mb-1">عرض سمپاشی (متر)</label>
+          <input id="widthB" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <div>
+          <label class="block mb-1 flex items-center">
+            سرعت حرکت (متر در 30 ثانیه)
+            <button onclick="openSpeedHelp()" class="ml-2 text-white underline text-sm">🛈 راهنما</button>
+          </label>
+          <input id="speedB" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <div>
+          <label class="block mb-1 flex items-center">
+            جمع دبی نازل‌ها (لیتر در 30 ثانیه)
+            <button onclick="openNozzleHelp()" class="ml-2 text-white underline text-sm">🛈 راهنما</button>
+          </label>
+          <input id="flowB" type="number" class="w-full border rounded p-2 text-black">
+        </div>
+        <button onclick="calculateB()" class="bg-white text-black w-full py-2 rounded">محاسبه</button>
+        <div id="resultB" class="mt-2 text-yellow-200 font-semibold hidden"></div>
+        <button onclick="goBackToPage1()" class="mt-4 underline">بازگشت</button>
+      </div>
+    </div>
+
+    <!-- مودال‌ها -->
+    <div id="helpModalNozzle" class="modal hidden">
+      <div class="modal-content">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-lg font-bold text-black">راهنمای جمع دبی نازل‌ها</h3>
+          <button onclick="closeNozzleHelp()" class="text-red-600 text-xl font-bold">&times;</button>
+        </div>
+        <img src="https://i.ibb.co/3YyWNxKx/nozzel.jpg" alt="راهنمای نازل" class="w-full rounded border">
+      </div>
+    </div>
+
+    <div id="helpModalSpeed" class="modal hidden">
+      <div class="modal-content">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-lg font-bold text-black">راهنمای سرعت حرکت</h3>
+          <button onclick="closeSpeedHelp()" class="text-red-600 text-xl font-bold">&times;</button>
+        </div>
+        <img src="https://i.ibb.co/5gqjD1dp/distance.jpg" alt="راهنمای سرعت" class="w-full rounded border">
+      </div>
+    </div>
+
+    <div id="helpModalDose" class="modal hidden">
+      <div class="modal-content text-black">
+        <div class="flex justify-between items-center mb-2">
+          <h3 class="text-lg font-bold">راهنمای وارد کردن مقدار توصیه شده</h3>
+          <button onclick="closeDoseHelp()" class="text-red-600 text-xl font-bold">&times;</button>
+        </div>
+        <p class="leading-loose font-semibold text-gray-800">
+          برای سمومی که مقدار مصرف آنها بصورت <span class="text-red-500 font-bold">چند در هزار</span> توصیه شده است باید مطابق مثال زیر عمل کنید:<br>
+
+          <span class="block mt-2 text-green-600">اگر میزان مصرف ۲ در هزار توصیه شده باشد شما باید عدد <strong>۲۰۰۰</strong> را وارد کنید.</span>
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    // ثبت Service Worker برای کار کردن آفلاین
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((registration) => {
+            console.log('Service Worker با موفقیت ثبت شد:', registration.scope);
+          })
+          .catch((error) => {
+            console.log('خطا در ثبت Service Worker:', error);
+          });
+      });
+    }
+  </script>
+</body>
+</html>
