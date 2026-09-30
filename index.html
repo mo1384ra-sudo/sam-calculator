@@ -133,6 +133,105 @@
         <button onclick="goBackToPage1()" class="mt-4 underline">بازگشت</button>
       </div>
     </div>
+<!-- صفحه محاسبه آب موردنیاز -->
+<div id="pageWater" class="hidden mt-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">💧 محاسبه آب موردنیاز</h2>
+    <button onclick="backToDashboard()" class="text-white text-xl">🔙</button>
+  </div>
+  <div class="flex flex-col space-y-4">
+    <div>
+      <label class="block mb-1">مقدار سم خالص در دست (لیتر یا کیلوگرم)</label>
+      <input id="poisonAmount" type="number" inputmode="decimal" class="w-full border rounded p-2 text-black">
+      <div class="error-msg" id="err-poisonAmount">⚠️ مقدار سم را وارد کنید</div>
+    </div>
+    <div>
+      <label class="block mb-1">غلظت توصیه‌شده (در هزار)</label>
+      <input id="concentration" type="number" inputmode="decimal" class="w-full border rounded p-2 text-black">
+      <div class="error-msg" id="err-concentration">⚠️ غلظت باید بیشتر از صفر باشد</div>
+    </div>
+    <button onclick="calculateWater()" class="bg-white text-black w-full py-2 rounded font-bold">محاسبه</button>
+    <div id="resultWater" class="mt-2 text-yellow-200 font-semibold hidden p-3 bg-black bg-opacity-30 rounded"></div>
+    <button onclick="backToDashboard()" class="mt-4 underline">بازگشت به داشبورد</button>
+  </div>
+</div>
+
+<!-- صفحه محاسبه مساحت زمین -->
+<div id="pageArea" class="hidden mt-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">🚜 محاسبه مساحت زمین</h2>
+    <button onclick="backToDashboard()" class="text-white text-xl">🔙</button>
+  </div>
+  <div class="flex flex-col space-y-4">
+    <div>
+      <label class="block mb-1">روش محاسبه</label>
+      <select id="areaMethod" class="w-full p-2 rounded text-black" onchange="toggleAreaMethod()">
+        <option value="rect">مستطیلی (طول × عرض)</option>
+        <option value="hectare">هکتار مستقیم</option>
+      </select>
+    </div>
+    
+    <div id="rectInputs" class="space-y-4">
+      <div>
+        <label class="block mb-1">طول زمین (متر)</label>
+        <input id="landLength" type="number" inputmode="decimal" class="w-full border rounded p-2 text-black">
+        <div class="error-msg" id="err-landLength">⚠️ طول را وارد کنید</div>
+      </div>
+      <div>
+        <label class="block mb-1">عرض زمین (متر)</label>
+        <input id="landWidth" type="number" inputmode="decimal" class="w-full border rounded p-2 text-black">
+        <div class="error-msg" id="err-landWidth">⚠️ عرض را وارد کنید</div>
+      </div>
+    </div>
+    
+    <div id="hectareInput" class="hidden">
+      <label class="block mb-1">مساحت (هکتار)</label>
+      <input id="hectareDirect" type="number" inputmode="decimal" class="w-full border rounded p-2 text-black">
+      <div class="error-msg" id="err-hectareDirect">⚠️ مساحت را وارد کنید</div>
+    </div>
+    
+    <button onclick="calculateArea()" class="bg-white text-black w-full py-2 rounded font-bold">محاسبه</button>
+    <div id="resultArea" class="mt-2 text-yellow-200 font-semibold hidden p-3 bg-black bg-opacity-30 rounded"></div>
+    <button onclick="backToDashboard()" class="mt-4 underline">بازگشت به داشبورد</button>
+  </div>
+</div>
+
+<!-- صفحه سابقه محاسبات -->
+<div id="pageHistory" class="hidden mt-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">📋 سابقه محاسبات</h2>
+    <button onclick="backToDashboard()" class="text-white text-xl">🔙</button>
+  </div>
+  <div id="historyContent"></div>
+  <button onclick="clearHistory()" class="mt-4 bg-red-500 text-white w-full py-2 rounded font-bold">پاک کردن همه</button>
+  <button onclick="backToDashboard()" class="mt-2 underline w-full">بازگشت به داشبورد</button>
+</div>
+
+<!-- صفحه راهنما -->
+<div id="pageHelp" class="hidden mt-6">
+  <div class="flex justify-between items-center mb-4">
+    <h2 class="text-xl font-bold">📖 راهنمای استفاده</h2>
+    <button onclick="backToDashboard()" class="text-white text-xl">🔙</button>
+  </div>
+  <div class="text-white space-y-4 text-sm leading-loose">
+    <p><strong class="text-yellow-300">۱. محاسبه مصرف سم (حالت الف - غلظتی):</strong><br>
+    وقتی روی قوطی سم نوشته «۲ در هزار»، یعنی برای هر ۱۰۰۰ لیتر آب، ۲ لیتر سم. عدد ۲۰۰۰ رو وارد کن.</p>
+    
+    <p><strong class="text-yellow-300">۲. محاسبه مصرف سم (حالت ب - هکتاری):</strong><br>
+    وقتی روی قوطی نوشته «۱.۵ لیتر در هکتار»، این حالت رو انتخاب کن.</p>
+    
+    <p><strong class="text-yellow-300">۳. محاسبه آب موردنیاز:</strong><br>
+    اگه مقدار سم در دست داری و می‌خوای بدونی چقدر آب باید اضافه کنی.</p>
+    
+    <p><strong class="text-yellow-300">۴. محاسبه مساحت زمین:</strong><br>
+    برای محاسبه‌ی مساحت زمین کشاورزی به هکتار یا مترمربع.</p>
+    
+    <p class="mt-4 p-3 bg-red-500 bg-opacity-40 rounded">
+      ⚠️ <strong>هشدار ایمنی:</strong> هنگام کار با سموم حتماً از ماسک، دستکش و لباس محافظ استفاده کنید.
+    </p>
+  </div>
+  <button onclick="backToDashboard()" class="mt-6 underline w-full">بازگشت به داشبورد</button>
+</div>
 
     <!-- مودال‌ها -->
     <div id="helpModalNozzle" class="modal hidden">
