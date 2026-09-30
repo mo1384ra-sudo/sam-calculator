@@ -16,19 +16,47 @@
   <div class="max-w-md mx-auto">
 
     <!-- صفحه خوش‌آمدگویی -->
-    <div id="introPage">
-      <h1 class="text-2xl md:text-3xl font-bold text-center text-yellow-300 mb-4">
-        محاسبه‌گر میزان مصرف سم خالص در مخزن سمپاش
-      </h1>
-      <img src="https://i.ibb.co/RTx5Vrd9/1.jpg" alt="تصویر خوش‌آمدگویی" class="rounded-lg shadow-lg w-full mb-4">
-      <p class="text-center text-sm md:text-base mb-6 text-white font-semibold">
-                پدید آورنده :محمد رحمتی <br>
-        رشته آمار دانشگاه صنعتی اصفهان
-      </p>
-      <button onclick="enterApp()" class="bg-yellow-300 text-black font-bold w-full py-3 rounded hover:bg-yellow-400 transition">
-        ورود به برنامه
-      </button>
-    </div>
+    <!-- صفحه خوش‌آمدگویی / داشبورد -->
+<div id="introPage">
+  <h1 class="text-2xl md:text-3xl font-bold text-center text-yellow-300 mb-4">
+    محاسبه‌گر مصرف سم
+  </h1>
+  
+  <p class="text-center text-sm mb-6 text-white font-semibold">
+    پدید آورنده : دکتر دانشمند وزیری<br>
+    کارشناس مرکز تحقیقات کشاورزی و منابع طبیعی استان اصفهان
+  </p>
+
+  <!-- کارت‌های داشبورد -->
+  <div class="grid grid-cols-2 gap-4">
+    
+    <button onclick="enterApp()" class="dash-card">
+      <span class="text-4xl">🧪</span>
+      <span class="font-bold text-sm">محاسبه مصرف سم</span>
+    </button>
+    
+    <button onclick="openWaterCalc()" class="dash-card">
+      <span class="text-4xl">💧</span>
+      <span class="font-bold text-sm">محاسبه آب موردنیاز</span>
+    </button>
+    
+    <button onclick="openAreaCalc()" class="dash-card">
+      <span class="text-4xl">🚜</span>
+      <span class="font-bold text-sm">محاسبه مساحت زمین</span>
+    </button>
+    
+    <button onclick="openHistory()" class="dash-card">
+      <span class="text-4xl">📋</span>
+      <span class="font-bold text-sm">سابقه محاسبات</span>
+    </button>
+    
+    <button onclick="openHelp()" class="dash-card col-span-2">
+      <span class="text-4xl">📖</span>
+      <span class="font-bold text-sm">راهنمای استفاده</span>
+    </button>
+    
+  </div>
+</div>
 
     <!-- انتخاب نوع محاسبه -->
     <div id="page1" class="hidden">
