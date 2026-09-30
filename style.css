@@ -23,3 +23,72 @@ body {
   max-width: 500px;
   width: 90%;
 }
+/* کارت‌های داشبورد */
+.dash-card {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 1rem;
+  padding: 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: white;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.dash-card:active {
+  transform: scale(0.95);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.dash-card:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* هشدار خطا زیر فیلدها */
+.error-msg {
+  color: #ffd700;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  display: none;
+  font-weight: bold;
+}
+
+.error-msg.show {
+  display: block;
+}
+
+input.input-error {
+  border: 2px solid #ef4444 !important;
+  background-color: #fef2f2;
+}
+
+/* جدول تاریخچه */
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.history-table th,
+.history-table td {
+  padding: 0.6rem 0.4rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.history-table th {
+  background: rgba(0,0,0,0.2);
+  font-weight: bold;
+}
+
+.history-empty {
+  text-align: center;
+  color: #fef3c7;
+  padding: 2rem 1rem;
+}
